@@ -1,5 +1,11 @@
+import NavBarContainer from '../NavBar/NavBarContainer';
+
 const Header = () => {
-	return <div>Header</div>;
+	return (
+		<>
+			<NavBarContainer />
+		</>
+	);
 };
 
 export default Header;

@@ -1,0 +1,18 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	padding: 8px;
+	background-color: bisque;
+}
+
+body {
+	position: relative;
+	max-width: 1200px;
+	height: calc(100vh - 16px);
+	margin: 0 auto;
+	background-color: cadetblue;
+}

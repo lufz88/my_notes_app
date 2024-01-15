@@ -1,7 +1,13 @@
 import NoteItem from './NoteItem';
+import PropTypes from 'prop-types';
 
-const NoteItemContainer = () => {
-	return <NoteItem />;
+const NoteItemContainer = ({ note }) => {
+	const { fecha, content, tags } = note;
+	return <NoteItem fecha={fecha} content={content} tags={tags} />;
+};
+
+NoteItemContainer.propTypes = {
+	note: PropTypes.object.isRequired,
 };
 
 export default NoteItemContainer;
