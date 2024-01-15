@@ -1,11 +1,14 @@
 import sequelize from '../libs/sequelize.js';
 
 const model = sequelize.models.Note;
+const noteTagModel = sequelize.models.NoteTag;
 class NotesService {
 	constructor() {}
 
 	async find() {
-		const data = await model.findAll();
+		const data = await model.findAll({
+			include: ['tags'],
+		});
 		return data;
 	}
 
@@ -14,8 +17,15 @@ class NotesService {
 		return newNote;
 	}
 
+	async addTag(data) {
+		const newTag = await noteTagModel.create(data);
+		return newTag;
+	}
+
 	async findOne(id) {
-		const note = await model.findByPk(id);
+		const note = await model.findByPk(id, {
+			include: ['tags'],
+		});
 		return note;
 	}
 

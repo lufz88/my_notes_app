@@ -17,7 +17,19 @@ class TagsController {
 		}
 	}
 
-	async getTagById(req, res) {}
+	async getTagById(req, res) {
+		try {
+			const { id } = req.params;
+			const data = await service.findOne(id);
+			if (data) {
+				res.status(200).send({ status: 200, data: data });
+			} else {
+				res.status(404).send({ status: 404, message: 'Not Found' });
+			}
+		} catch (e) {
+			res.status(500).send({ status: 500, message: e });
+		}
+	}
 
 	async postTag(req, res) {
 		try {
@@ -29,9 +41,19 @@ class TagsController {
 		}
 	}
 
-	async putTag(req, res) {}
-
-	async deleteTag(req, res) {}
+	async deleteTag(req, res) {
+		try {
+			const { id } = req.params;
+			const data = await service.delete(id);
+			if (data) {
+				res.status(200).send({ status: 200, data: data });
+			} else {
+				res.status(404).send({ status: 404, message: 'Not Found' });
+			}
+		} catch (e) {
+			res.status(500).send({ status: 500, message: e });
+		}
+	}
 }
 
 export default TagsController;

@@ -13,6 +13,11 @@ export const NoteSchema = {
 		allowNull: false,
 		type: DataTypes.STRING,
 	},
+	active: {
+		allowNull: false,
+		type: DataTypes.BOOLEAN,
+		defaultValue: true,
+	},
 	createdAt: {
 		allowNull: false,
 		type: DataTypes.DATE,

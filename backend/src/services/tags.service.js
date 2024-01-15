@@ -15,6 +15,11 @@ class TagsService {
 		return tag;
 	}
 
+	async findOneByName(name) {
+		const tag = await model.findOne({ where: { name: name } });
+		return tag;
+	}
+
 	async create(name) {
 		const newTag = await model.create({ name });
 		return newTag;
