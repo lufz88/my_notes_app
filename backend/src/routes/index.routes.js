@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import routerNotes from './notes.routes.js';
+import routerTags from './tags.routes.js';
 
 const router = Router();
 
