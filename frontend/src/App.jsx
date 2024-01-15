@@ -18,11 +18,15 @@ function App() {
 							<>
 								<HeaderContainer />
 								<Routes>
-									<Route index element={<NoteListContainer />} />
-									<Route path='/active' element={<NoteListContainer />} />
-									<Route path='/archive' element={<NoteListContainer />} />
-									<Route path='/create' element={<NoteFormContainer />} />
-									<Route path='/edit' element={<NoteFormContainer />} />
+									<Route index element={<NoteListContainer option={'all'} />} />
+									<Route
+										path='/active'
+										element={<NoteListContainer option={'active'} />}
+									/>
+									<Route
+										path='/archive'
+										element={<NoteListContainer option={'archive'} />}
+									/>
 									<Route path='/tags/:tag' element={<NoteListContainer />} />
 									<Route path='/*' element={<h1>404 - No route </h1>} />
 								</Routes>

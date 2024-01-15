@@ -25,8 +25,8 @@ const TagMenu = ({ handleClick, open, anchorEl, handleClose, tags }) => {
 					'aria-labelledby': 'basic-button',
 				}}>
 				{tags.map(tag => (
-					<MenuItem key={tag} onClick={handleClose}>
-						{tag}
+					<MenuItem key={tag.id} onClick={handleClose}>
+						{tag.name}
 					</MenuItem>
 				))}
 			</Menu>

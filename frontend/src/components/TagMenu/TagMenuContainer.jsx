@@ -1,8 +1,17 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import TagMenu from './TagMenu';
+import { Context } from '../../context/Context';
 
 const TagMenuContainer = () => {
-	const tags = ['chocolate', 'compras', 'ventas', 'ravioles', 'lavanderia'];
+	const { tags, setTags, getTags } = useContext(Context);
+
+	useEffect(() => {
+		const fetchTags = async () => {
+			setTags(await getTags());
+		};
+		fetchTags();
+	}, []);
+
 	const [anchorEl, setAnchorEl] = useState(false);
 	const open = Boolean(anchorEl);
 	const handleClick = event => {

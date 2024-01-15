@@ -1,8 +1,9 @@
 .TagsContainer {
 	width: 75%;
+	margin-top: 30px;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 4px;
 	position: absolute;
-	bottom: -205px;
+	bottom: 48px;
+	gap: 6px;
 }

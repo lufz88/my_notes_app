@@ -1,51 +1,40 @@
+import { useContext, useEffect } from 'react';
 import NoteList from './NoteList';
+import { Context } from '../../context/Context';
+import PropTypes from 'prop-types';
 
-const NoteListContainer = () => {
-	const notes = [
-		{
-			id: 1,
-			fecha: 'ahora',
-			content: 'Una nota re piola que armé recién',
-			tags: ['chocolate', 'compras', 'ventas'],
-		},
-		{
-			id: 2,
-			fecha: 'ahora',
-			content: 'Una nota re piola que armé recién',
-			tags: ['chocolate', 'compras', 'ventas'],
-		},
-		{
-			id: 3,
-			fecha: 'ahora',
-			content: 'Una nota re piola que armé recién',
-			tags: ['chocolate', 'compras', 'ventas'],
-		},
-		{
-			id: 4,
-			fecha: 'ahora',
-			content: 'Una nota re piola que armé recién',
-			tags: ['chocolate', 'compras', 'ventas'],
-		},
-		{
-			id: 5,
-			fecha: 'ahora',
-			content: 'Una nota re piola que armé recién',
-			tags: ['chocolate', 'compras', 'ventas'],
-		},
-		{
-			id: 6,
-			fecha: 'ahora',
-			content: 'Una nota re piola que armé recién',
-			tags: ['chocolate', 'compras', 'ventas'],
-		},
-		{
-			id: 7,
-			fecha: 'ahora',
-			content: 'Una nota re piola que armé recién',
-			tags: ['chocolate', 'compras', 'ventas'],
-		},
-	];
+const NoteListContainer = ({ option }) => {
+	const { notes, setNotes, getNotes } = useContext(Context);
+
+	useEffect(() => {
+		const fetchNotes = async () => {
+			const allNotes = await getNotes();
+			console.log(allNotes);
+			if (option === 'all') {
+				setNotes(allNotes);
+				return;
+			}
+
+			if (option === 'active') {
+				const activeNotes = allNotes.filter(note => note.active === true);
+				setNotes(activeNotes);
+				return;
+			}
+
+			if (option === 'archive') {
+				const archiveNotes = allNotes.filter(note => note.active === false);
+				setNotes(archiveNotes);
+				return;
+			}
+		};
+		fetchNotes();
+	}, [option]);
+
 	return <NoteList notes={notes} />;
+};
+
+NoteListContainer.propTypes = {
+	option: PropTypes.string.isRequired,
 };
 
 export default NoteListContainer;

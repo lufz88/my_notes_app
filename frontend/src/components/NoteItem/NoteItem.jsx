@@ -9,23 +9,24 @@ import NoteActionButtonContainer from '../NoteActionButton/NoteActionButtonConta
 import TagItemContainer from '../TagItem/TagItemContainer';
 import styles from './NoteItem.module.css';
 
-const NoteItem = ({ fecha, content, tags }) => {
+const NoteItem = ({ createdAt, content, tags, id, active }) => {
+	const backgroundColor = active ? 'white' : '#ffe4c4';
 	return (
-		<Box sx={{ minWidth: 275, maxWidth: 350 }}>
-			<Card sx={{ height: 300 }} variant='outlined'>
-				<CardContent sx={{ position: 'relative' }}>
+		<Box sx={{ width: 280, position: 'relative' }}>
+			<Card sx={{ height: 300, backgroundColor }} variant='outlined'>
+				<CardContent sx={{ position: 'relative', height: 300 }}>
 					<Typography sx={{ fontSize: 14 }} color='text.secondary' gutterBottom>
-						{fecha}
+						{createdAt}
 					</Typography>
 					<Typography variant='body2'>{content}</Typography>
 					<div className={styles.TagsContainer}>
 						{tags.map(tag => (
-							<TagItemContainer key={tag} label={tag} />
+							<TagItemContainer key={tag.id} label={tag.name} />
 						))}
 					</div>
 				</CardContent>
-				<CardActions>
-					<NoteActionButtonContainer />
+				<CardActions style={{ position: 'absolute', bottom: 16, right: 16 }}>
+					<NoteActionButtonContainer id={id} active={active} />
 				</CardActions>
 			</Card>
 		</Box>
@@ -33,9 +34,11 @@ const NoteItem = ({ fecha, content, tags }) => {
 };
 
 NoteItem.propTypes = {
-	fecha: PropTypes.string.isRequired,
+	createdAt: PropTypes.string.isRequired,
 	content: PropTypes.string.isRequired,
-	tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+	tags: PropTypes.arrayOf(PropTypes.object).isRequired,
+	id: PropTypes.number.isRequired,
+	active: PropTypes.bool.isRequired,
 };
 
 export default NoteItem;
