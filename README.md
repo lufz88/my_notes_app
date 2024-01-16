@@ -2,6 +2,18 @@
 
 This is the `README.md` file for your "MyApp" application. Here you will find instructions and requirements to run the application successfully.
 
+## Getting Started
+
+To quickly initialize and set up the project, we've included a convenient `setup.sh` script. This script automates the process of creating the necessary environment variables, setting up a PostgreSQL database with Docker, and launching both the backend and frontend in development mode.
+
+### Instructions
+
+1. Navigate to the project directory in your terminal.
+2. Run the following command to grant execution permissions to the setup script:
+    ```bash
+    chmod +x setup.sh
+    ```
+
 ## Features Implemented
 
 1. **Create Notes:** Users can now create new notes with ease. The application supports the addition of relevant details and tags.
