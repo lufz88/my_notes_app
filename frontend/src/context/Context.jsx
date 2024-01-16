@@ -19,7 +19,15 @@ const ContextProvider = ({ children }) => {
 				return res.data.data;
 			}
 		} catch (error) {
-			console.error('Error fetching notes:', error);
+			if (axios.isAxiosError(error)) {
+				// Error de Axios
+				console.error('Axios error:', error.message);
+				console.error('Response data:', error.response.data);
+				console.error('Response status:', error.response.status);
+				return [];
+			} else {
+				console.error('Error fetching notes:', error);
+			}
 		}
 	};
 
@@ -33,7 +41,7 @@ const ContextProvider = ({ children }) => {
 				return newNote;
 			}
 		} catch (error) {
-			console.error('Error fetching notes:', error);
+			console.error('Error creating note:', error);
 		}
 	};
 
@@ -44,7 +52,7 @@ const ContextProvider = ({ children }) => {
 				setNotes(await getNotes());
 			}
 		} catch (error) {
-			console.error('Error fetching notes:', error);
+			console.error('Error deleting note:', error);
 		}
 	};
 
@@ -57,7 +65,7 @@ const ContextProvider = ({ children }) => {
 				return modifiedNote;
 			}
 		} catch (error) {
-			console.error('Error fetching notes:', error);
+			console.error('Error editing note:', error);
 		}
 	};
 	const getTags = async () => {
@@ -68,7 +76,15 @@ const ContextProvider = ({ children }) => {
 				return res.data.data;
 			}
 		} catch (error) {
-			console.error('Error fetching notes:', error);
+			if (axios.isAxiosError(error)) {
+				// Error de Axios
+				console.error('Axios error:', error.message);
+				console.error('Response data:', error.response.data);
+				console.error('Response status:', error.response.status);
+				return [];
+			} else {
+				console.error('Error fetching tags:', error);
+			}
 		}
 	};
 	const addTag = async tagName => {

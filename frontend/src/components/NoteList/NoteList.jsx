@@ -9,7 +9,7 @@ const NoteList = ({ notes }) => {
 					return <NoteItemContainer key={note.id} note={note} />;
 				})
 			) : (
-				<h2 style={{ color: '#fffefef0' }}>There are no notes with that tag</h2>
+				<h2 style={{ color: '#fffefef0' }}>There are no notes yet</h2>
 			)}
 		</div>
 	);
