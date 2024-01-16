@@ -18,8 +18,11 @@ docker run --name my-postgres-db -e POSTGRES_PASSWORD=admin123 -p 5432:5432 -d p
 # Wait for a few seconds to ensure the database is ready
 sleep 5
 
+# Create the 'lucas' role in the PostgreSQL server
+docker exec -it my-postgres-db psql -U postgres -c "CREATE ROLE lucas WITH LOGIN PASSWORD 'admin123';"
+
 # Create the my_notes_app database
-docker exec -it my-postgres-db psql -U lucas -d postgres -c "CREATE DATABASE my_notes_app;"
+docker exec -it my-postgres-db psql -U postgres -c "CREATE DATABASE my_notes_app;"
 
 # Start the backend in development mode
 npm run dev &
