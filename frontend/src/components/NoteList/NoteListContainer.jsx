@@ -4,14 +4,24 @@ import { Context } from '../../context/Context';
 import PropTypes from 'prop-types';
 
 const NoteListContainer = ({ option }) => {
-	const { notes, setNotes, getNotes } = useContext(Context);
-
+	const { notes, setNotes, getNotes, tagUrl } = useContext(Context);
 	useEffect(() => {
 		const fetchNotes = async () => {
 			const allNotes = await getNotes();
-			console.log(allNotes);
 			if (option === 'all') {
 				setNotes(allNotes);
+				return;
+			}
+
+			if (option === 'tag') {
+				let taggedNotes = [];
+				allNotes.forEach(note => {
+					const tags = note.tags.map(tag => tag.name);
+					if (tags.includes(tagUrl)) {
+						taggedNotes.push(note);
+					}
+				});
+				setNotes(taggedNotes);
 				return;
 			}
 
@@ -28,7 +38,7 @@ const NoteListContainer = ({ option }) => {
 			}
 		};
 		fetchNotes();
-	}, [option]);
+	}, [option, tagUrl]);
 
 	return <NoteList notes={notes} />;
 };

@@ -10,6 +10,7 @@ const ContextProvider = ({ children }) => {
 	const [notes, setNotes] = useState([]);
 	const [tags, setTags] = useState([]);
 	const [newNoteTags, setNewNoteTags] = useState([]);
+	const [tagUrl, setTagUrl] = useState('');
 	const getNotes = async () => {
 		try {
 			const res = await axios.get(`${API}/notes`);
@@ -50,8 +51,10 @@ const ContextProvider = ({ children }) => {
 	const editNote = async (id, data) => {
 		try {
 			const res = await axios.patch(`${API}/notes/${id}`, data);
-			if (res.data) {
+			if (res.data.data) {
+				const modifiedNote = res.data.data;
 				setNotes(await getNotes());
+				return modifiedNote;
 			}
 		} catch (error) {
 			console.error('Error fetching notes:', error);
@@ -94,6 +97,8 @@ const ContextProvider = ({ children }) => {
 		createNote,
 		deleteNote,
 		editNote,
+		tagUrl,
+		setTagUrl,
 	};
 	return <Context.Provider value={data}>{children}</Context.Provider>;
 };

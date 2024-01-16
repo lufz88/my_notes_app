@@ -3,7 +3,7 @@ import TagMenu from './TagMenu';
 import { Context } from '../../context/Context';
 
 const TagMenuContainer = () => {
-	const { tags, setTags, getTags } = useContext(Context);
+	const { tags, setTags, getTags, setTagUrl } = useContext(Context);
 
 	useEffect(() => {
 		const fetchTags = async () => {
@@ -20,6 +20,10 @@ const TagMenuContainer = () => {
 	const handleClose = () => {
 		setAnchorEl(false);
 	};
+	const handleTagClick = tag => {
+		setTagUrl(tag);
+		handleClose();
+	};
 
 	return (
 		<TagMenu
@@ -28,6 +32,7 @@ const TagMenuContainer = () => {
 			anchorEl={anchorEl}
 			handleClose={handleClose}
 			tags={tags}
+			handleTagClick={handleTagClick}
 		/>
 	);
 };

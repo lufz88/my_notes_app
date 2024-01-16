@@ -6,8 +6,9 @@ import Button from '@mui/material/Button';
 import TagMenuContainer from '../TagMenu/TagMenuContainer';
 import CreateModal from '../CreateModal/CreateModal';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const NavBar = () => {
+const NavBar = ({ handleClick }) => {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position='static'>
@@ -18,17 +19,20 @@ const NavBar = () => {
 					<CreateModal />
 					<Link
 						to='/'
-						style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>
+						style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
+						onClick={handleClick}>
 						<Button color='inherit'>All</Button>
 					</Link>
 					<Link
 						to='/active'
-						style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>
+						style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
+						onClick={handleClick}>
 						<Button color='inherit'>Active</Button>
 					</Link>
 					<Link
 						to='/archive'
-						style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>
+						style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}
+						onClick={handleClick}>
 						<Button color='inherit'>Archive</Button>
 					</Link>
 					<TagMenuContainer />
@@ -36,6 +40,10 @@ const NavBar = () => {
 			</AppBar>
 		</Box>
 	);
+};
+
+NavBar.propTypes = {
+	handleClick: PropTypes.func.isRequired,
 };
 
 export default NavBar;

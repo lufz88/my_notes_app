@@ -6,9 +6,7 @@ class NotesService {
 	constructor() {}
 
 	async find() {
-		const data = await model.findAll({
-			include: ['tags'],
-		});
+		const data = await model.findAll({ include: ['tags'] });
 		return data;
 	}
 
@@ -36,6 +34,7 @@ class NotesService {
 	}
 
 	async delete(id) {
+		await noteTagModel.destroy({ where: { noteId: id } });
 		const note = await this.findOne(id);
 		await note.destroy();
 		return id;

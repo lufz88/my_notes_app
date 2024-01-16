@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router-dom';
 
-const TagMenu = ({ handleClick, open, anchorEl, handleClose, tags }) => {
+const TagMenu = ({ handleClick, open, anchorEl, handleClose, tags, handleTagClick }) => {
 	return (
 		<div>
 			<Button
@@ -25,9 +26,13 @@ const TagMenu = ({ handleClick, open, anchorEl, handleClose, tags }) => {
 					'aria-labelledby': 'basic-button',
 				}}>
 				{tags.map(tag => (
-					<MenuItem key={tag.id} onClick={handleClose}>
-						{tag.name}
-					</MenuItem>
+					<Link
+						key={tag.id}
+						onClick={() => handleTagClick(tag.name)}
+						to={`/tags/${tag.name}`}
+						style={{ color: 'inherit', textDecoration: 'none', cursor: 'pointer' }}>
+						<MenuItem>{tag.name}</MenuItem>
+					</Link>
 				))}
 			</Menu>
 		</div>
@@ -39,6 +44,7 @@ TagMenu.propTypes = {
 	open: PropTypes.bool.isRequired,
 	anchorEl: PropTypes.any.isRequired,
 	handleClose: PropTypes.func.isRequired,
+	handleTagClick: PropTypes.func.isRequired,
 	tags: PropTypes.array.isRequired,
 };
 

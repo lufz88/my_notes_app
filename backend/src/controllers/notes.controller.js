@@ -9,7 +9,6 @@ class NotesController {
 	async getNotes(req, res) {
 		try {
 			const data = await notesService.find();
-			console.log(data);
 			if (data.length >= 1) {
 				res.status(200).send({ status: 200, data: data });
 			} else {

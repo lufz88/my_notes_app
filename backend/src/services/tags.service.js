@@ -21,8 +21,9 @@ class TagsService {
 	}
 
 	async create(name) {
-		const newTag = await model.create({ name });
-		return newTag;
+		const [tag, created] = await model.findOrCreate({ where: { name: name } });
+		const data = { tag, created };
+		return data;
 	}
 
 	async update(id, changes) {

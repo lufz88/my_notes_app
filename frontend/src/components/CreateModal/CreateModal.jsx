@@ -5,7 +5,7 @@ import { useContext, useState } from 'react';
 import { TextField } from '@mui/material';
 import { Context } from '../../context/Context';
 import TagItemContainer from '../TagItem/TagItemContainer';
-import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
 	position: 'absolute',
@@ -98,6 +98,7 @@ export default function CreateModal() {
 	const [open, setOpen] = useState(false);
 	const { newNoteTags, setNewNoteTags, createNote } = useContext(Context);
 	const [tagInput, setTagInput] = useState('');
+	const navigate = useNavigate();
 
 	const handleOpen = () => {
 		setOpen(true);
@@ -121,6 +122,7 @@ export default function CreateModal() {
 
 				setTagInput('');
 				handleClose();
+				navigate('/');
 			} catch (error) {
 				console.error('Error adding tag:', error);
 			}
