@@ -17,6 +17,7 @@ To quickly initialize and set up the project, we've included a convenient `setup
     ```bash
      setup.sh
     ```
+4. If the backend app crashes, wait for the script to finish running and run it again. I couldn't resolve that issue.
 
 ## Features Implemented
 

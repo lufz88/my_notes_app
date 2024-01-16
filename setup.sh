@@ -15,7 +15,7 @@ cd backend && npm install
 docker-compose up -d postgres
 
 # Wait for a few seconds to ensure the database is ready
-sleep 5
+sleep 10
 
 # Run database migrations
 npx sequelize-cli db:migrate
