@@ -8,6 +8,10 @@ DB_PASSWORD=admin123
 DB_HOST=localhost
 DB_PORT=5432" > backend/.env
 
+# Install backend dependencies
+cd backend
+npm install
+
 # Create and start the database in Docker
 docker run --name my-postgres-db -e POSTGRES_PASSWORD=admin123 -p 5432:5432 -d postgres:latest
 
@@ -18,12 +22,16 @@ sleep 5
 docker exec -it my-postgres-db psql -U lucas -d postgres -c "CREATE DATABASE my_notes_app;"
 
 # Start the backend in development mode
-cd backend
 npm run dev &
 
 # Wait for a few seconds to ensure the backend server is ready
 sleep 5
 
-# Start the frontend in development mode
+# Change to the frontend directory
 cd ../frontend
+
+# Install frontend dependencies
+npm install
+
+# Start the frontend in development mode
 npm run dev

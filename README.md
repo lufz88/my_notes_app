@@ -13,6 +13,10 @@ To quickly initialize and set up the project, we've included a convenient `setup
     ```bash
     chmod +x setup.sh
     ```
+3. Execute the setup script:
+    ```bash
+     setup.sh
+    ```
 
 ## Features Implemented
 
